@@ -143,7 +143,7 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 					'smslog_id' => $data['smslog_id'],
 					'uid' => $data['uid'],
 					'sender_id' => $data['sender_id'],
-					'sms_to' => $data['to'],
+					'sms_to' => $data['sms_to'],
 					'message' => $data['message'],
 					'sms_type' => $data['sms_type'],
 					'unicode' => $data['unicode'] 
