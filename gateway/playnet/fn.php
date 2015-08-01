@@ -177,7 +177,7 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 	
 	$returns['modified'] = TRUE;
 	$returns['param']['content'] = json_encode($content);
-	$returns['param']['content-type'] = 'text/plain';
+	$returns['param']['content-type'] = 'text/json';
 	
 	return $returns;
 }
