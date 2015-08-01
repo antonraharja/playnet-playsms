@@ -13,7 +13,7 @@ CREATE TABLE `playsms_gatewayPlaynet_outgoing` (
   `smsc` varchar(100) NOT NULL DEFAULT '',
   `smslog_id` int(11) NOT NULL DEFAULT '0',
   `sender_id` varchar(100) NOT NULL DEFAULT '',
-  `to` varchar(100) NOT NULL DEFAULT '',
+  `sms_to` varchar(100) NOT NULL DEFAULT '',
   `message` text NOT NULL,
   `sms_type` int(11) NOT NULL DEFAULT '0',
   `unicode` int(11) NOT NULL DEFAULT '0',

@@ -80,7 +80,7 @@ function playnet_hook_sendsms($smsc, $sms_sender, $sms_footer, $sms_to, $sms_msg
 			'smsc' => $smsc,
 			'smslog_id' => $smslog_id,
 			'sender_id' => $sms_sender,
-			'to' => $sms_to,
+			'sms_to' => $sms_to,
 			'message' => $sms_msg,
 			'sms_type' => $sms_type,
 			'unicode' => $unicode 
@@ -143,7 +143,7 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 					'smslog_id' => $data['smslog_id'],
 					'uid' => $data['uid'],
 					'sender_id' => $data['sender_id'],
-					'to' => $data['to'],
+					'sms_to' => $data['to'],
 					'message' => $data['message'],
 					'sms_type' => $data['sms_type'] 
 				);
@@ -213,7 +213,7 @@ function playnet_hook_playsmsd() {
 						$remote_smslog_id = $data['smslog_id'];
 						$remote_uid = $data['uid'];
 						$username = $c_plugin_config['playnet']['sendsms_username'];
-						$sms_to = $data['to'];
+						$sms_to = $data['sms_to'];
 						$message = $data['message'];
 						$unicode = core_detect_unicode($message);
 						$sms_type = $data['sms_type'];
