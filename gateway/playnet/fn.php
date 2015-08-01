@@ -115,7 +115,7 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 	$c_plugin_config = gateway_apply_smsc_config($smsc, $plugin_config);
 	
 	// auth remote
-	if (!($c_plugin_config['local_playnet_username'] && $c_plugin_config['local_playnet_password'] && ($c_plugin_config['local_playnet_username'] == $username) && ($c_plugin_config['local_playnet_password'] == $password))) {
+	if (!($c_plugin_config['playnet']['local_playnet_username'] && $c_plugin_config['playnet']['local_playnet_password'] && ($c_plugin_config['playnet']['local_playnet_username'] == $username) && ($c_plugin_config['playnet']['local_playnet_password'] == $password))) {
 		$content['status'] = 'ERROR';
 		$content['error_string'] = 'Authentication failed';
 		
