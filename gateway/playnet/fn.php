@@ -120,7 +120,7 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 		$content['error_string'] = 'Authentication failed';
 		
 		$returns['modified'] = TRUE;
-		$returns['param']['content'] = $content;
+		$returns['param']['content'] = json_encode($content);
 		$returns['param']['content-type'] = 'text/json';
 		
 		return $returns;
@@ -175,8 +175,8 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 	}
 	
 	$returns['modified'] = TRUE;
-	$returns['param']['content'] = $content;
-	$returns['param']['content-type'] = 'text/json';
+	$returns['param']['content'] = json_encode($content);
+	$returns['param']['content-type'] = 'text/plain';
 	
 	return $returns;
 }
@@ -202,8 +202,8 @@ function playnet_hook_playsmsd() {
 			$ws .= '&s=' . $c_plugin_config['playnet']['remote_playnet_smsc'];
 			$ws .= '&u=' . $c_plugin_config['playnet']['remote_playnet_username'];
 			$ws .= '&p=' . $c_plugin_config['playnet']['remote_playnet_password'];
-			$response = @file_get_contents($ws);
-			$response = json_decode($response, 1);
+			$response_raw = @file_get_contents($ws);
+			$response = json_decode($response_raw, 1);
 			
 			// validate response
 			if (strtoupper($response['status']) == 'OK') {
@@ -222,6 +222,8 @@ function playnet_hook_playsmsd() {
 						sendsms_helper($username, $sms_to, $message, $sms_type, $unicode, '', 1, '', $sms_sender);
 					}
 				}
+			} else {
+				_log('url:[' . $ws . '] response:[' . $response_raw . ']', 3, 'playnet_hook_playsmsd');
 			}
 		}
 	}
