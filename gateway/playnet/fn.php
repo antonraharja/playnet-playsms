@@ -138,14 +138,15 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 			);
 			$list = dba_search(_DB_PREF_ . '_gatewayPlaynet_outgoing', '*', $conditions, '', $extras);
 			foreach ($list as $data) {
-				$content['data'][] = array(
+				$rows[] = array(
 					'smsc' => $data['smsc'],
 					'smslog_id' => $data['smslog_id'],
 					'uid' => $data['uid'],
 					'sender_id' => $data['sender_id'],
 					'sms_to' => $data['to'],
 					'message' => $data['message'],
-					'sms_type' => $data['sms_type'] 
+					'sms_type' => $data['sms_type'],
+					'unicode' => $data['unicode'] 
 				);
 				
 				// update flag
@@ -165,7 +166,7 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 			
 			if (count($content['data'])) {
 				$content['status'] = 'OK';
-				$content['data'] = $list;
+				$content['data'] = $rows;
 			}
 			break;
 	}
