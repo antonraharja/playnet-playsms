@@ -168,10 +168,11 @@ function playnet_hook_webservices_output($operation, $requests, $returns) {
 				$content['data'] = $list;
 			}
 			break;
-		
-		default :
-			$content['status'] = 'ERROR';
-			$content['error_string'] = 'No data';
+	}
+	
+	if (!count($content['data'])) {
+		$content['status'] = 'ERROR';
+		$content['error_string'] = 'No data';
 	}
 	
 	$returns['modified'] = TRUE;
@@ -222,8 +223,6 @@ function playnet_hook_playsmsd() {
 						sendsms_helper($username, $sms_to, $message, $sms_type, $unicode, '', 1, '', $sms_sender);
 					}
 				}
-			} else {
-				_log('url:[' . $ws . '] response:[' . $response_raw . ']', 3, 'playnet_hook_playsmsd');
 			}
 		}
 	}
